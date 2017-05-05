@@ -1,24 +1,26 @@
-import Dependencies.{ Serialization, Utils }
-import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-import playscalajs.ScalaJSPlay
 import sbt.Keys._
 import sbt._
 
 object Client {
   private[this] val clientSettings = Shared.commonSettings ++ Seq(
-    libraryDependencies ++= Seq(
-      "be.doeraene" %%% "scalajs-jquery" % Dependencies.ScalaJS.jQueryVersion,
-      "com.lihaoyi" %%% "scalatags" % Dependencies.ScalaJS.scalaTagsVersion
-    ),
-    testFrameworks += new TestFramework("utest.runner.Framework"),
-    scalaJSStage in Global := FastOptStage,
-    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala")
+    name := "client",
+    resolvers += sbt.Resolver.bintrayRepo("denigma", "denigma-releases"),
+    libraryDependencies ++= ClientDependencies.scalajsDependencies.value,
+    jsDependencies ++= ClientDependencies.jsDependencies.value,
+    // RuntimeDOM is needed for tests
+    jsDependencies += RuntimeDOM % "test",
+    // yes, we want to package JS dependencies
+    skip in packageJSDependencies := false,
+    // use Scala.js provided launcher code to start the client app
+    scalaJSUseMainModuleInitializer := true,
+    scalaJSStage in Global := FastOptStage
+    //    scapegoatIgnoredFiles := Seq(".*/JsonUtils.scala", ".*/JsonSerializers.scala")
   )
 
   lazy val client = (project in file("client"))
     .settings(clientSettings: _*)
-    .enablePlugins(ScalaJSPlugin, ScalaJSPlay)
+    .enablePlugins(ScalaJSPlugin, ScalaJSWeb)
     .dependsOn(Shared.sharedJs)
 }

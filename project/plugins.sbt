@@ -13,9 +13,9 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")
 
 // Scala.js
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.15")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.16")
 
-addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.3.1" exclude("org.scala-js", "sbt-scalajs"))
+addSbtPlugin("com.vmunier" % "sbt-web-scalajs" % "1.0.4")
 
 // App Packaging
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.5")
@@ -33,7 +33,7 @@ addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.0-M15-1")
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.8.0") // scalastyle
 
-addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.4") // scapegoat
+//addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.4") // scapegoat
 
 addSbtPlugin("com.orrsella" % "sbt-stats" % "1.0.5") // stats
 

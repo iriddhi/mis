@@ -1,18 +1,43 @@
-logs
-conf/generated.keystore
-project/project/target
-project/target
-target
-tmp
-.history
-dist
-/.idea
-/*.iml
-/out
-/.idea_modules
-/.classpath
-/.project
-/RUNNING_PID
-/.settings
+*.class
+*.log
 
-buildinfo.properties
+# sbt specific
+.cache/
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+.cache*
+.settings
+.project
+.classpath
+*/bin
+
+# IntelliJ IDEA
+.idea
+*.iml
+out
+*.sc
+
+# GitBook
+doc/_book
+
+# web hook/service
+#.travis.yml
+
+#node modules
+node_modules/
+
+*.patch
+
+.toDelete
+
+public/

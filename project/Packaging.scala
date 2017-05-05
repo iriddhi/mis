@@ -1,8 +1,8 @@
 import com.typesafe.sbt.packager.Keys._
 import com.typesafe.sbt.packager.debian.DebianPlugin.autoImport.Debian
-import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport.{ Docker, dockerExposedPorts, dockerExposedVolumes }
-import com.typesafe.sbt.packager.jdkpackager.JDKPackagerPlugin.autoImport.{ JDKPackager, jdkAppIcon, jdkPackagerBasename }
-import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.{ Universal, useNativeZip }
+import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport.{Docker, dockerExposedPorts, dockerExposedVolumes}
+import com.typesafe.sbt.packager.jdkpackager.JDKPackagerPlugin.autoImport.{JDKPackager, jdkAppIcon, jdkPackagerBasename}
+import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.{Universal, useNativeZip}
 import com.typesafe.sbt.packager.windows
 import com.typesafe.sbt.packager.windows.WindowsPlugin.autoImport.Windows
 import sbt.Keys._
