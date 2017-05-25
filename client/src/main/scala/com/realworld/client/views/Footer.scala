@@ -7,7 +7,7 @@ object Footer {
     <.footer(
       <.div(
         ^.className := "container",
-        <.a(^.href := "/", ^.className := "logo-font", "conduit"),
+        <.a(^.href := "/", ^.className := "logo-font", "omis"),
         <.span(^.className := "attribution", "An interactive learning project from",
           <.a(^.href := "https://thinkster.io", "Thinkster"),
           ". Code & design licensed under MIT.")

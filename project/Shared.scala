@@ -5,10 +5,11 @@ import net.virtualvoid.sbt.graph.DependencyGraphSettings.graphSettings
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
+import webscalajs.ScalaJSWeb
 
 object Shared {
-  val projectId = "amumis"
-  val projectName = "amumis"
+  val projectId = "realworld-starter-kit"
+  val projectName = "realworld-starter-kit"
 
   lazy val commonSettings = Seq(
     version := Shared.Versions.app,

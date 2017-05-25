@@ -35,6 +35,20 @@ object Dependencies {
 
   object Utils {
     val ficus = "com.iheart" %% "ficus" % "1.4.0"
+    val freeStyle = "io.frees" %% "freestyle" % "0.1.1"
   }
+
+  object DatabaseUtils {
+    val flyway = "org.flywaydb" %% "flyway-play" % "3.1.0"
+    val scalalikeJDBC = "org.scalikejdbc" %% "scalikejdbc" % "2.5.1"
+    val quill = "io.getquill" %% "quill-jdbc" % "1.2.1"
+    val quillAsync = "io.getquill" %% "quill-async-postgres" % "1.2.1"
+    val postgres = "org.postgresql" % "postgresql" % "9.4.1208"
+  }
+
+  object Testing {
+    val scalatestPlusPlay = "org.scalatestplus.play" %% "scalatestplus-play" % "2.0.0" % "test"
+  }
+
 
 }
