@@ -2,7 +2,6 @@
 
 --CREATE DATABASE omis;
 
-
 create table if not exists universities(
     id uuid,
     code varchar(4) not null unique,
@@ -19,7 +18,7 @@ create unique index code_idx on universities(code);
 create table if not exists faculties(
     id uuid,
     university_id uuid not null,
-    code varchar(4) not null unique ,
+    code varchar(10) not null,
     name varchar(128) not null,
     address_of_faculty varchar (128) not null,
     year_of_establishment varchar (4) not null,
@@ -33,6 +32,7 @@ alter table faculties add constraint faculty_university_fk FOREIGN KEY (universi
 create table if not exists departments(
     id uuid,
     faculty_id uuid not null,
+    code VARCHAR(10) not null,
     name varchar(128) not null,
     year_of_establishment varchar (4) not null,
     address varchar (128) not null,
@@ -43,23 +43,15 @@ create table if not exists departments(
 alter table departments add constraint department_faculty_fk FOREIGN KEY (faculty_id) references faculties(id)
     on delete cascade on update cascade;
 
+
 create table if not exists users(
     id uuid,
-    role_id uuid not null,
+    role varchar(10) not null,
+    registration_id(10) not null,
     created TIMESTAMP not null
 );
 
 alter table users add constraint user_id primary key(id);
-
-create table if not exists roles (
-    id uuid,
-    description varchar(2048) not null,
-    created timestamp not null
-);
-alter table roles add constraint role_id primary key(id);
-
-alter table users add constraint user_role_fk
-    foreign key(role_id) references roles(id) on delete cascade on update cascade;
 
 
 create table if not exists password_info (
@@ -98,7 +90,8 @@ create sequence  if not exists employee_seq;
 
 create table if not exists employees(
     id uuid,
-    serial_number char(4) not null default to_char(nextval('employee_seq'), '0000FM'),
+    registration_number char(4) not null default to_char(nextval('employee_seq'), '0000FM'),
+    emp_group varchar(2) not null,
     user_id uuid not null,
     department_id uuid not null,
     employee_since timestamp not null,
@@ -106,7 +99,7 @@ create table if not exists employees(
     primary key(id)
 );
 
-alter sequence employee_seq owned by employees.serial_number;
+alter sequence employee_seq owned by employees.registration_number;
 
 alter table employees add constraint employee_user_fk FOREIGN KEY (user_id) references users(id)
     on delete cascade on update cascade;
@@ -181,13 +174,14 @@ create sequence  if not exists enrollment_number_seq;
 create table if not exists students(
     id uuid,
     user_id uuid not null,
-    enrollment_serial char(4) not null default to_char(nextval('enrollment_number_seq'), '0000FM'),
+    enrollment_number char(4) not null default to_char(nextval('enrollment_number_seq'), '0000FM'),
+    student_group char(4) not null,
     date_of_enrollment date not null,
     created timestamp not null,
     primary key (id)
 );
 
-alter sequence enrollment_number_seq owned by students.enrollment_serial;
+alter sequence enrollment_number_seq owned by students.enrollment_number;
 
 alter table students add constraint student_user_fk FOREIGN KEY (user_id) references users(id)
     on delete cascade on update cascade;
