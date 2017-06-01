@@ -1,6 +1,6 @@
 import play.api.{ApplicationLoader, BuiltInComponentsFromContext, LoggerConfigurator, Mode}
 import com.softwaremill.macwire.wire
-import controllers.{Assets, ViewController, WebJarAssets}
+import controllers._
 import io.getquill.{PostgresAsyncContext, PostgresJdbcContext, SnakeCase}
 import modules.{DatabaseModule, SilhouetteModule}
 import org.flywaydb.play.FlywayPlayComponents
@@ -12,11 +12,9 @@ import play.filters.cors.CORSComponents
 import play.filters.csrf.CSRFComponents
 import play.filters.gzip.GzipFilterComponents
 import play.filters.headers.SecurityHeadersComponents
-import services.silhouetteservices.SilhouetteIdentityService
 import utils.web.{Filters, RequestHandler, ServerErrorHandler}
 import utils.AppLogger
 import router.Routes
-import services.UniversityService
 
 import scala.concurrent.ExecutionContext
 
@@ -32,8 +30,6 @@ class Loader(context: Context) extends BuiltInComponentsFromContext(context)
     _.configure(context.environment)
   }
 
-  lazy val silhouetteIdentityService = wire[SilhouetteIdentityService]
-
   implicit lazy val executionContext: ExecutionContext = actorSystem.dispatcher
   lazy val routerOption = None
   override lazy val router: Router = {
@@ -48,6 +44,9 @@ class Loader(context: Context) extends BuiltInComponentsFromContext(context)
 
   // controllers
   lazy val viewController: ViewController = wire[ViewController]
+  lazy val registrationController: RegistrationController = wire[RegistrationController]
+  lazy val authController: AuthController = wire[AuthController]
+  lazy val empController: EmployeeController = wire[EmployeeController]
 
   override lazy val httpRequestHandler: HttpRequestHandler = wire[RequestHandler]
   override lazy val httpErrorHandler: HttpErrorHandler = wire[ServerErrorHandler]
